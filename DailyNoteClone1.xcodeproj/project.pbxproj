@@ -15,6 +15,8 @@
 		CB5E76B02985362100AC6651 /* DailyNoteClone1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB5E76AE2985362100AC6651 /* DailyNoteClone1.xcdatamodeld */; };
 		CB5E76B7298537EE00AC6651 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5E76B6298537EE00AC6651 /* MainView.swift */; };
 		CB5E76B92985392B00AC6651 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5E76B82985392B00AC6651 /* MenuView.swift */; };
+		CB5E76BB2986802F00AC6651 /* WriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5E76BA2986802F00AC6651 /* WriteView.swift */; };
+		CB5E76BD298692D500AC6651 /* NoteBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5E76BC298692D500AC6651 /* NoteBookView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		CB5E76AF2985362100AC6651 /* DailyNoteClone1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DailyNoteClone1.xcdatamodel; sourceTree = "<group>"; };
 		CB5E76B6298537EE00AC6651 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		CB5E76B82985392B00AC6651 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		CB5E76BA2986802F00AC6651 /* WriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteView.swift; sourceTree = "<group>"; };
+		CB5E76BC298692D500AC6651 /* NoteBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteBookView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,8 @@
 		CB5E76A22985362000AC6651 /* DailyNoteClone1 */ = {
 			isa = PBXGroup;
 			children = (
+				CB5E76BC298692D500AC6651 /* NoteBookView.swift */,
+				CB5E76BA2986802F00AC6651 /* WriteView.swift */,
 				CB5E76B82985392B00AC6651 /* MenuView.swift */,
 				CB5E76B6298537EE00AC6651 /* MainView.swift */,
 				CB5E76A32985362000AC6651 /* DailyNoteClone1App.swift */,
@@ -150,11 +156,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB5E76AD2985362100AC6651 /* Persistence.swift in Sources */,
+				CB5E76BD298692D500AC6651 /* NoteBookView.swift in Sources */,
 				CB5E76B92985392B00AC6651 /* MenuView.swift in Sources */,
 				CB5E76A62985362000AC6651 /* ContentView.swift in Sources */,
 				CB5E76A42985362000AC6651 /* DailyNoteClone1App.swift in Sources */,
 				CB5E76B7298537EE00AC6651 /* MainView.swift in Sources */,
 				CB5E76B02985362100AC6651 /* DailyNoteClone1.xcdatamodeld in Sources */,
+				CB5E76BB2986802F00AC6651 /* WriteView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
