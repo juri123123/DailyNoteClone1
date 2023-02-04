@@ -13,7 +13,7 @@ struct MainView: View {
     
     var body: some View{
         GeometryReader { geometry in
-            //사이드메뉴 활성화 됐을 때 MainView 터치 시 비활성화하기 구현해야함
+            
             MainMenuView(showMenu: self.$showMenu)
                 .frame(width: geometry.size.width, height: geometry.size.height)
                 .onTapGesture {
@@ -23,16 +23,15 @@ struct MainView: View {
                 }
             if self.showMenu {
                 MenuView()
-                    .frame(width: geometry.size.width/2)
+                    .frame(width: geometry.size.width * 3/5)
+                    .offset(x: self.showMenu ? 0 : -300, y: 0)
                     .background(Color.mint)
-                    .opacity(0.5)
+                    .opacity(0.7)
             }
-            
-            
         }//GeometryReader
     }
     
-
+    
     
 }
 
@@ -41,8 +40,6 @@ struct MainMenuView : View {
     @Binding var showMenu: Bool
     @State var diaryText: String = "작성된 글이 없습니다"
     @State var today = Date()
-    
-    @State var isNavigationBarHidden = false
     
     @State var showCalendar = false
     
@@ -58,31 +55,7 @@ struct MainMenuView : View {
         NavigationView {
             GeometryReader { geometry in
                 ZStack(alignment: .leading) {
-                    VStack() {
-                        HStack {
-                            //메뉴
-                            Button(action: {
-                                withAnimation{
-                                    self.showMenu = true
-                                }
-                            }) {
-                                Image(systemName: "ellipsis")
-                                    .foregroundColor(.gray)
-                                    .font(.system(size: 25))
-                            }.padding()
-                            
-                            Spacer()
-                            
-                            //노트북 뷰로 이동
-                            NavigationLink(destination: NoteBookView(isNavigationBarHidden: self.$isNavigationBarHidden)) {
-                                Image(systemName: "note")
-                                    .foregroundColor(.gray)
-                                    .font(.system(size: 25))
-                                    .padding()
-                            }
-                                           
-        
-                        } //HStack
+                    VStack(alignment:.leading) {
                         
                         //우측 상단 오늘 날짜 표시
                         ZStack(alignment: .trailing) {
@@ -103,39 +76,59 @@ struct MainMenuView : View {
                                     .padding(.trailing)
                                     .foregroundColor(.black)
                             }
-                                
+                            
                         }
                         
-                       if self.showCalendar {
+                        if self.showCalendar {
                             DatePicker(diaryText, selection: $today, displayedComponents: [.date])
                                 .datePickerStyle(GraphicalDatePickerStyle())
-                                .frame(height: geometry.size.height/6)
-                                .offset(y: 100)
+                                .frame(height: geometry.size.height/2)
+                                .offset(y: 10)
                         }
                         
                         //datepicker에서 날짜 선택 시 버튼 등 바꾸기 구현해야함
-                        //text가 왼쪽상단에 정렬되도록 어떻게 하는지...
-                        //view animation 어플과 같게 어떻게?
-                        //text tap이 아니라 zstack (=view) tap 시 view 이동하는 방법???
-                        
-                        
                         NavigationLink(destination: WriteView()) {
-                            Text(diaryText)
-                                .foregroundColor(.black)
+                            VStack() {
+                                Text(diaryText)
+                                    .foregroundColor(.black)
+                                    .padding()
+                      
+                            }
+                            .contentShape(Rectangle())
                         }
-                        
-                        .frame(height: geometry.size.height)
-                        
                     }//VStack
                 } //ZStack
-
+                
             }//geometryreader
             
             //navigationbar 숨기기
             .navigationTitle("")
-            .navigationBarHidden(self.isNavigationBarHidden)
-            .onAppear{
-                self.isNavigationBarHidden = true
+            .navigationBarHidden(showMenu)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button  {
+                        withAnimation {
+                            if !showMenu {
+                                showMenu = true
+                            }
+                        }
+                    } label: {
+                        Image(systemName: "ellipsis")
+                            .foregroundColor(.gray)
+                            .font(.system(size: 25))
+                        
+                    }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink {
+                        NoteBookView()
+                    } label: {
+                        Image(systemName: "note")
+                            .foregroundColor(.gray)
+                            .font(.system(size: 25))
+                        
+                    }
+                }
             }
             
         }//NavigationView

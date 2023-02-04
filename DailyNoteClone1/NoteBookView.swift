@@ -5,29 +5,49 @@
 //  Created by juri on 2023/01/29.
 //
 
+//list count 일기 수 처리 
+
 import SwiftUI
+
+struct NoteBookVieWModel: Identifiable {
+    let id = UUID()
+    var icon: Image = Image(systemName: "checkmark")
+    var name: String
+    var count: Int = 0
+}
+
+struct NoteRow: View {
+    
+    var note: NoteBookVieWModel
+    
+    var body: some View {
+        HStack {
+            
+            Image(systemName: "checkmark")
+            Text(note.name)
+            Spacer()
+            Text(String(note.count))
+            
+        }
+    }
+}
+
 
 struct NoteBookView: View {
     
-    @Binding var isNavigationBarHidden: Bool
-    
-    init(isNavigationBarHidden: Binding<Bool> = .constant(false)) {
-        _isNavigationBarHidden = isNavigationBarHidden
-    }
+    let note1 = NoteBookVieWModel(name: "노트북")
     
     var body: some View {
+        
         List {
-            Text("first")
+            NoteRow(note: note1)
         }
         
         .navigationTitle("노트북")
-//        .navigationBarHidden(self.isNavigationBarHidden)
         .navigationBarHidden(false)
-        .onAppear{
-            self.isNavigationBarHidden = false
-        }
         
-    }//navigationview
+        
+    }
     
 }
 
