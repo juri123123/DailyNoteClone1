@@ -5,9 +5,10 @@
 //  Created by juri on 2023/01/29.
 //
 
-//list count 일기 수 처리 
+//list count 일기 수 처리
 
 import SwiftUI
+import TextFieldAlert
 
 struct NoteBookVieWModel: Identifiable {
     let id = UUID()
@@ -18,6 +19,8 @@ struct NoteBookVieWModel: Identifiable {
 
 struct NoteRow: View {
     
+    @State private var showingAlert = false
+    @State private var noteName = "기본 노트북"
     var note: NoteBookVieWModel
     
     var body: some View {
@@ -29,13 +32,55 @@ struct NoteRow: View {
             Text(String(note.count))
             
         }
+        .swipeActions {
+            
+            Button(action: {
+                //삭제
+            }) {
+                Image(systemName: "trash")
+            }
+            .tint(.red)
+            Button(action: {
+                // alert
+                showingAlert = true
+                
+            }) {
+                Image(systemName: "pencil")
+            }
+            .tint(.gray)
+            
+        }
+        .textFieldAlert(
+            title: "노트북",
+            textFields: [
+                .init(text: $noteName)
+            ],
+            actions: [
+                .init(title: "OK")
+            ],
+            isPresented: $showingAlert
+        )
+        
+        
+//        .alert(isPresented: $showingAlert) {
+//            Alert(
+//                title: Text("노트북"),
+//                primaryButton: .default(Text("취소"),
+//                                       action: {}),
+//                secondaryButton: .default(Text("확인"),
+//                                          action: {})
+//
+//
+//                  )
+//        }
+        
     }
 }
 
 
 struct NoteBookView: View {
     
-    let note1 = NoteBookVieWModel(name: "노트북")
+    let note1 = NoteBookVieWModel(name: "기본 노트북")
     
     var body: some View {
         
@@ -44,9 +89,10 @@ struct NoteBookView: View {
         }
         
         .navigationTitle("노트북")
-        .navigationBarHidden(false)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: BackButton())
         
-        
+
     }
     
 }

@@ -5,8 +5,7 @@
 //  Created by juri on 2023/01/29.
 //
 
-// 체크 버튼 클릭 시 글 저장
-// x 버튼 클릭 시 저장하지 않고 전 화면 (메인) 으로 돌아가기
+// 글을 입력해 주세요 부분에 저장된 데이터 불러오기
 
 import SwiftUI
 import PhotosUI
@@ -43,11 +42,13 @@ struct PhotoPicker: UIViewControllerRepresentable {
 
 struct WriteView: View{
     
+    @EnvironmentObject var store: DiaryStore
+    @Environment(\.dismiss) var dismiss
+    
     @State var placeholderText: String = "글을 입력해 주세요"
-    @State var content: String = ""
+    @State var writeContent: String = ""
     @State var showingSheet = false
     @State var showImagePicker: Bool = false
-//    @State var item: Photos
     
     var dateTime: String {
         let formatter = DateFormatter()
@@ -60,9 +61,20 @@ struct WriteView: View{
         formatter2.dateFormat = "HH:mm"
         return formatter2.string(from: Date())
     }
-
-    var body: some View{
+    
+    var loadDiary: String {
+        for diary in store.list {
+            if (diary.insertDate == dateTime) {
+                return diary.content
+            }
+        }
+        return ""
+    }
+    
+    var body: some View {
         
+//        self.writeContent = loadDiary
+    
         GeometryReader { geometry in
             NavigationView {
                 VStack {
@@ -81,22 +93,27 @@ struct WriteView: View{
                                 .font(.system(size: 25))
                         }
                         .confirmationDialog("변경 사항을 취소 하시겠습니까?", isPresented: $showingSheet) {
-                            Button("저장하지 않기", role: .destructive) {}
+                            Button("저장하지 않기", role: .destructive) {
+                                dismiss()
+                            }
                         } message: {
                             Text("변경 사항을 취소 하시겠습니까?")
                         }
                     }//hstack
                     .padding()
+                    
+                    
            
                     ZStack{
-                        if self.content.isEmpty {
+         
+                        if self.writeContent.isEmpty {
                             TextEditor(text: $placeholderText)
                                 .font(.body)
                                 .padding()
                         }
-                        TextEditor(text: $content)
+                        TextEditor(text: $writeContent)
                             .font(.body)
-                            .opacity(self.content.isEmpty ? 0.25 : 1)
+                            .opacity(self.writeContent.isEmpty ? 0.25 : 1)
                             .padding()
                     }
                 }//vstack
@@ -104,7 +121,7 @@ struct WriteView: View{
                 .toolbar {
                     ToolbarItemGroup(placement: .keyboard) {
                         Button(action: {
-                            self.content.append(time)
+                            self.writeContent.append(time)
                         }) {
                             Image(systemName: "clock")
                                 .foregroundColor(.black)
@@ -119,7 +136,9 @@ struct WriteView: View{
                         Spacer()
                         Button(action: {
                             //저장과 키보드 내리기
+                            store.insert(diary: writeContent)
                             
+                            dismiss()
                         }) {
                             Image(systemName: "checkmark")
                                 .foregroundColor(.black)
@@ -142,5 +161,6 @@ struct WriteView: View{
 struct WriteView_Previews: PreviewProvider {
     static var previews: some View {
         WriteView()
+            .environmentObject(DiaryStore())
     }
 }

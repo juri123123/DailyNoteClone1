@@ -4,19 +4,42 @@
 //
 //  Created by juri on 2023/02/04.
 //
+// 내용 검색 로직 해야함
 
 import SwiftUI
 
 struct SearchView: View {
     
+    @State var searchText = ""
+    
     var body: some View {
         GeometryReader { geometry in
+            
             VStack {
-                Text("내용 검색")
-            }
-            .background(Color.white)
-            .frame(width: geometry.size.width, height: geometry.size.height)
+                HStack {
+                    BackButton()
+                        .padding()
+                    TextField("내용 검색", text: $searchText)
+                        .foregroundColor(.primary)
+                    
+                    if !searchText.isEmpty {
+                        Button(action: {
+                            self.searchText = ""
+                        }) {
+                            Image(systemName: "x.circle")
+                                .padding()
+                        }
+                    } else {
+                        EmptyView()
+                    }
+                }//Hstack
+                
+                //검색 결과 리스트업
+                
+            }//VStack
         }
+        .navigationBarHidden(true)
+        
         
        
     }

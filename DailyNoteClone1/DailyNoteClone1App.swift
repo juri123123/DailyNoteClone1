@@ -9,13 +9,14 @@ import SwiftUI
 
 @main
 struct DailyNoteClone1App: App {
+    @StateObject var store = DiaryStore()
     let persistenceController = PersistenceController.shared
 
     var body: some Scene {
         WindowGroup {
-//            ContentView()
-//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
             MainView()
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(store)
         }
     }
 }

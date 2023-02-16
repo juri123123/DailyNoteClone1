@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB597289299E1EDB006476C2 /* TextFieldAlert in Frameworks */ = {isa = PBXBuildFile; productRef = CB597288299E1EDB006476C2 /* TextFieldAlert */; };
 		CB5E76A42985362000AC6651 /* DailyNoteClone1App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5E76A32985362000AC6651 /* DailyNoteClone1App.swift */; };
 		CB5E76A62985362000AC6651 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5E76A52985362000AC6651 /* ContentView.swift */; };
 		CB5E76A82985362100AC6651 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB5E76A72985362100AC6651 /* Assets.xcassets */; };
@@ -18,6 +19,9 @@
 		CB5E76BB2986802F00AC6651 /* WriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5E76BA2986802F00AC6651 /* WriteView.swift */; };
 		CB5E76BD298692D500AC6651 /* NoteBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5E76BC298692D500AC6651 /* NoteBookView.swift */; };
 		CB5E76BF298E559E00AC6651 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5E76BE298E559E00AC6651 /* SearchView.swift */; };
+		CB5E76CC298EC57900AC6651 /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5E76CB298EC57900AC6651 /* Diary.swift */; };
+		CB5E76CE298EC5F200AC6651 /* DiaryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5E76CD298EC5F200AC6651 /* DiaryStore.swift */; };
+		CB5E76D0299A1F0300AC6651 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5E76CF299A1F0300AC6651 /* BackButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +38,9 @@
 		CB5E76BC298692D500AC6651 /* NoteBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteBookView.swift; sourceTree = "<group>"; };
 		CB5E76BE298E559E00AC6651 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		CB5E76C2298E7F0500AC6651 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CB5E76CB298EC57900AC6651 /* Diary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
+		CB5E76CD298EC5F200AC6651 /* DiaryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryStore.swift; sourceTree = "<group>"; };
+		CB5E76CF299A1F0300AC6651 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB597289299E1EDB006476C2 /* TextFieldAlert in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +86,7 @@
 				CB5E76A52985362000AC6651 /* ContentView.swift */,
 				CB5E76A72985362100AC6651 /* Assets.xcassets */,
 				CB5E76A92985362100AC6651 /* Preview Content */,
+				CB5E76CF299A1F0300AC6651 /* BackButton.swift */,
 			);
 			path = DailyNoteClone1;
 			sourceTree = "<group>";
@@ -102,6 +111,8 @@
 		CB5E76CA298EC50D00AC6651 /* Memory */ = {
 			isa = PBXGroup;
 			children = (
+				CB5E76CB298EC57900AC6651 /* Diary.swift */,
+				CB5E76CD298EC5F200AC6651 /* DiaryStore.swift */,
 			);
 			path = Memory;
 			sourceTree = "<group>";
@@ -122,6 +133,9 @@
 			dependencies = (
 			);
 			name = DailyNoteClone1;
+			packageProductDependencies = (
+				CB597288299E1EDB006476C2 /* TextFieldAlert */,
+			);
 			productName = DailyNoteClone1;
 			productReference = CB5E76A02985362000AC6651 /* DailyNoteClone1.app */;
 			productType = "com.apple.product-type.application";
@@ -150,6 +164,9 @@
 				Base,
 			);
 			mainGroup = CB5E76972985362000AC6651;
+			packageReferences = (
+				CB597287299E1EDB006476C2 /* XCRemoteSwiftPackageReference "TextFieldAlert" */,
+			);
 			productRefGroup = CB5E76A12985362000AC6651 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -177,12 +194,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB5E76AD2985362100AC6651 /* Persistence.swift in Sources */,
+				CB5E76CC298EC57900AC6651 /* Diary.swift in Sources */,
 				CB5E76BF298E559E00AC6651 /* SearchView.swift in Sources */,
 				CB5E76BD298692D500AC6651 /* NoteBookView.swift in Sources */,
 				CB5E76B92985392B00AC6651 /* MenuView.swift in Sources */,
 				CB5E76A62985362000AC6651 /* ContentView.swift in Sources */,
 				CB5E76A42985362000AC6651 /* DailyNoteClone1App.swift in Sources */,
 				CB5E76B7298537EE00AC6651 /* MainView.swift in Sources */,
+				CB5E76D0299A1F0300AC6651 /* BackButton.swift in Sources */,
+				CB5E76CE298EC5F200AC6651 /* DiaryStore.swift in Sources */,
 				CB5E76B02985362100AC6651 /* DailyNoteClone1.xcdatamodeld in Sources */,
 				CB5E76BB2986802F00AC6651 /* WriteView.swift in Sources */,
 			);
@@ -387,6 +407,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CB597287299E1EDB006476C2 /* XCRemoteSwiftPackageReference "TextFieldAlert" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sochalewski/TextFieldAlert";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CB597288299E1EDB006476C2 /* TextFieldAlert */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CB597287299E1EDB006476C2 /* XCRemoteSwiftPackageReference "TextFieldAlert" */;
+			productName = TextFieldAlert;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		CB5E76AE2985362100AC6651 /* DailyNoteClone1.xcdatamodeld */ = {

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     
+    
     @State var showMenu = false
     
     var body: some View{
@@ -36,6 +37,8 @@ struct MainView: View {
 }
 
 struct MainMenuView : View {
+    
+    @EnvironmentObject var store: DiaryStore
     
     @Binding var showMenu: Bool
     @State var diaryText: String = "작성된 글이 없습니다"
@@ -89,9 +92,14 @@ struct MainMenuView : View {
                         //datepicker에서 날짜 선택 시 버튼 등 바꾸기 구현해야함
                         NavigationLink(destination: WriteView()) {
                             VStack() {
-                                Text(diaryText)
-                                    .foregroundColor(.black)
-                                    .padding()
+                                ForEach(store.list, id: \.self) { diary in
+                                    if diary.insertDate == dateTime {
+                                        Text(diary.content)
+                                            .foregroundColor(.black)
+                                            .padding()
+                                    }
+                                    
+                                }
                       
                             }
                             .contentShape(Rectangle())
@@ -138,5 +146,6 @@ struct MainMenuView : View {
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
+            .environmentObject(DiaryStore())
     }
 }
